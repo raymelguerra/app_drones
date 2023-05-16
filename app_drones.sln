@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppDrones.Api", "AppDrones.Api\AppDrones.Api.csproj", "{604F2ED1-D232-4045-B392-C9BDAF5DDDCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDrones.Core", "AppDrones.Core\AppDrones.Core.csproj", "{A5C019F6-EBBA-4856-88B6-CA93E0796378}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppDrones.Core", "AppDrones.Core\AppDrones.Core.csproj", "{A5C019F6-EBBA-4856-88B6-CA93E0796378}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDrones.BatteryLevelTester", "BatteryLevelTester\AppDrones.BatteryLevelTester.csproj", "{DE1C23FC-F23D-45B8-BDE9-DED928E14027}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1C23FC-F23D-45B8-BDE9-DED928E14027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1C23FC-F23D-45B8-BDE9-DED928E14027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1C23FC-F23D-45B8-BDE9-DED928E14027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1C23FC-F23D-45B8-BDE9-DED928E14027}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

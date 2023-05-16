@@ -16,9 +16,9 @@ namespace AppDrones.Data
 
         public DatabaseContext()
         {
-            // var folder = Environment.SpecialFolder.ApplicationData;
-            var path = Directory.GetParent(Environment.CurrentDirectory)!.FullName;
-            DbPath = System.IO.Path.Join(path, "drones.db");
+            var folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            // var path = Directory.GetParent(Environment.CurrentDirectory)!.FullName;
+            DbPath = System.IO.Path.Join(folder, "drones.db");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
