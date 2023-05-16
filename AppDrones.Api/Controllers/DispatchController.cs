@@ -106,7 +106,7 @@ namespace AppDrones.Api.Controllers
         /// Checking loaded medication items for a given drone.
         /// </summary>
         /// <param name="droneId">Id of the drone</param>
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(IEnumerable<LoadedMedicationsResDto>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         [HttpGet("{droneId}/medications")]
@@ -135,7 +135,10 @@ namespace AppDrones.Api.Controllers
             }
         }
 
-        [ProducesResponseType(200)]
+        /// <summary>
+        /// checking available drones for loading;
+        /// </summary>
+        [ProducesResponseType(typeof(IEnumerable<DroneAvailableDto>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         [HttpGet("availables")]
@@ -144,6 +147,22 @@ namespace AppDrones.Api.Controllers
             try
             {
                 return Ok(await repo.CheckAvailability());
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+        [ProducesResponseType(typeof(IEnumerable<LoadedMedicationsResDto>), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        [HttpGet("{droneId}/batterylevel")]
+        public async Task<ActionResult> BatteryLevelByDrone(int droneId)
+        {
+            try
+            {
+                return Ok(await repo.BatteryLevel(droneId));
             }
             catch (Exception)
             {

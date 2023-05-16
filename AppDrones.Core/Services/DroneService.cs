@@ -7,11 +7,6 @@ using AppDrones.Core.Models;
 using AppDrones.Data;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppDrones.Core.Services
 {
@@ -25,15 +20,15 @@ namespace AppDrones.Core.Services
             _context.Database.EnsureCreated();
             _mapper = DroneMappings.InitializerMapping();
         }
-        public Task<DroneBatteryDto> BatteryLevel(int droneId)
+        public async Task<DroneBatteryDto> BatteryLevel(int droneId)
         {
-            throw new NotImplementedException();
+            var drone = await _context.Drone.FirstOrDefaultAsync(x => x.DroneId == droneId);
+            return _mapper.Map<DroneBatteryDto>(drone);
         }
 
         public async Task<IEnumerable<DroneAvailableDto>> CheckAvailability()
         {
             var drones = await _context.Drone.Where(x => x.State == State.IDLE && x.BatteryCapacity > 25).ToListAsync();
-
             return _mapper.Map<List<DroneAvailableDto>>(drones);
         }
 

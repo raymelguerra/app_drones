@@ -47,6 +47,9 @@ namespace AppDrones.Core.Mappings
                  .ForMember(dr => dr.BatteryCapacity, y => y.MapFrom(t => t.BatteryCapacity))
                  .ForMember(dr => dr.Model, y => y.MapFrom(t => t.Model.ToString()))
                  .ForMember(dr => dr.Id, y => y.MapFrom(t => t.DroneId));
+
+                map.CreateMap<Drone, DroneBatteryDto>()
+                .ForMember(dr => dr.BatteryCapacity, y => y.MapFrom(t => t.BatteryCapacity));
             });
             return new Mapper(config);
         }
