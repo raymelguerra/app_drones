@@ -65,8 +65,10 @@ namespace AppDrones.Core.Services
                     weightVerify += item.Weight;
                 }
 
-                if (weightVerify > drone!.WeightLimit)
+                if (weightVerify > drone!.WeightLimit) {
+                    await ChangeDroneStatus(drone, State.IDLE);
                     throw new WeightLimitException($"The maximum allowed weight of the drone <{drone.SerialNumber.ToUpper()}> has been exceeded");
+                }
 
                 drone!.Medications = list;
                 drone!.State = State.LOADED;

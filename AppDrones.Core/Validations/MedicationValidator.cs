@@ -22,14 +22,6 @@ namespace AppDrones.Core.Validations
                 {
                     context.AddFailure("This field is not valid ( Allowed only letters, numbers, -, _ )");
                 }
-                //try
-                //{
-                //    Regex.Match(value, pattern);
-                //}
-                //catch (ArgumentException)
-                //{
-                //    context.AddFailure("This field is not valid ( Allowed only letters, numbers, -, _ )");
-                //}
             }); 
             RuleFor(x => x.Weight).NotNull().NotEmpty().WithMessage("This field is mandatory");
             RuleFor(x => x.Code).NotNull().NotEmpty().WithMessage("This field is mandatory");
@@ -39,6 +31,20 @@ namespace AppDrones.Core.Validations
                     context.AddFailure("This field is not valid ( Allowed only upper case letters, underscore and numbers )");
                 } 
             });
+            RuleFor(x => x.Image).NotNull().NotEmpty().WithMessage("This field is mandatory");
+            RuleFor(x => x.Image).Custom((value, context) =>
+            {
+                if (!IsBase64String(value))
+                {
+                    context.AddFailure("This image is not a valid base64 string");
+                }
+            });
+        }
+
+        public static bool IsBase64String(string base64)
+        {
+            Span<byte> buffer = new Span<byte>(new byte[base64.Length]);
+            return Convert.TryFromBase64String(base64, buffer, out int bytesParsed);
         }
     }
 }
