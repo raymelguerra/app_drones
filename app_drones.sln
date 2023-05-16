@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppDrones.Api", "AppDrones.Api\AppDrones.Api.csproj", "{604F2ED1-D232-4045-B392-C9BDAF5DDDCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDrones.Core", "AppDrones.Core\AppDrones.Core.csproj", "{A5C019F6-EBBA-4856-88B6-CA93E0796378}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{604F2ED1-D232-4045-B392-C9BDAF5DDDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{604F2ED1-D232-4045-B392-C9BDAF5DDDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{604F2ED1-D232-4045-B392-C9BDAF5DDDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{604F2ED1-D232-4045-B392-C9BDAF5DDDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5C019F6-EBBA-4856-88B6-CA93E0796378}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A71DD395-8A5F-4F49-A5FB-670690B26283}
+	EndGlobalSection
+EndGlobal
