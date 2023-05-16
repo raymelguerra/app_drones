@@ -17,7 +17,6 @@ namespace AppDrones.Core.Validations
             RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("This field is mandatory");
             RuleFor(x => x.Name).Custom((value, context) =>
             {
-                // string pattern = @"^[a-zA-Z0-9_-]+$";
                 if (!Regex.Match(value, @"^[a-zA-Z0-9_-]+$").Success)
                 {
                     context.AddFailure("This field is not valid ( Allowed only letters, numbers, -, _ )");
@@ -34,7 +33,7 @@ namespace AppDrones.Core.Validations
             RuleFor(x => x.Image).NotNull().NotEmpty().WithMessage("This field is mandatory");
             RuleFor(x => x.Image).Custom((value, context) =>
             {
-                if (!IsBase64String(value))
+                if (!IsBase64String(value.Split(",")[1]))
                 {
                     context.AddFailure("This image is not a valid base64 string");
                 }

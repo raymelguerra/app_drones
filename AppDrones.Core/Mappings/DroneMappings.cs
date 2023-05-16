@@ -32,6 +32,12 @@ namespace AppDrones.Core.Mappings
                  .ForMember(dr => dr.Code, y => y.MapFrom(t => t.Code))
                  .ForMember(dr => dr.Image, y => y.MapFrom(t => t.Image))
                  .ForMember(dr => dr.Weight, y => y.MapFrom(t => t.Weight));
+                
+                map.CreateMap<Medication, LoadedMedicationsResDto>()
+                 .ForMember(dr => dr.Name, y => y.MapFrom(t => t.Name))
+                 .ForMember(dr => dr.Code, y => y.MapFrom(t => t.Code))
+                 .ForMember(dr => dr.Image, y => y.MapFrom(t => t.Image))
+                 .ForMember(dr => dr.Weight, y => y.MapFrom(t => t.Weight)); 
             });
             return new Mapper(config);
         }

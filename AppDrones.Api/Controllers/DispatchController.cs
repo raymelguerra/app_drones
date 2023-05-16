@@ -64,13 +64,12 @@ namespace AppDrones.Api.Controllers
         /// Loading a drone with medication items.
         /// </summary>
         /// <param name="medications">List of medication to load on the drone</param>
-        /// <response code="204">Returns no content status.</response>
-        /// <response code="400">Invalid medications input parameter.</response>
-        /// <response code="500">Internal Server error.</response>
+        /// <param name="droneId">Id of the drone</param>
+        /// <returns></returns>
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        [HttpPatch("loading/{droneId}")]
+        [HttpPatch("{droneId}/loading")]
         public async Task<ActionResult> PatchLoadingDrone(IEnumerable<LoadMedicationReqDto> medications, int droneId)
         {
             try
@@ -94,6 +93,40 @@ namespace AppDrones.Api.Controllers
             catch (Exception e)
             {
                 if (e is WeightLimitException || e is DroneNotFoundException || e is DroneStatusException || e is LowBatteryException)
+                {
+                    this.ModelState.TryAddModelError(e.Source!, e.Message);
+                    var vl = new ValidationProblemDetails(this.ModelState);
+                    return BadRequest(vl);
+                }
+                else
+                    return Problem();
+            }
+        }
+
+        /// <summary>
+        /// Checking loaded medication items for a given drone.
+        /// </summary>
+        /// <param name="droneId">Id of the drone</param>
+        /// <returns></returns>
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        [HttpGet("{droneId}/medications")]
+        public async Task<ActionResult> GetMedicationsByDrone(int droneId)
+        {
+            try
+            {
+                var response = await repo.LoadedMedications(droneId);
+                if (response.Count() == 0)
+                {
+                    return NotFound();
+                }
+                else
+                    return Ok(response);
+            }
+            catch (Exception e)
+            {
+                if (e is DroneNotFoundException)
                 {
                     this.ModelState.TryAddModelError(e.Source!, e.Message);
                     var vl = new ValidationProblemDetails(this.ModelState);

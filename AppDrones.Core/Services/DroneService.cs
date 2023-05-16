@@ -35,9 +35,19 @@ namespace AppDrones.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<LoadedMedicationsResDto>> LoadedMedications(int droneId)
+        public async Task<IEnumerable<LoadedMedicationsResDto>> LoadedMedications(int droneId)
         {
-            throw new NotImplementedException();
+            var medications = await _context.Medication.Where(x => x.DroneId == droneId).ToListAsync();
+
+            if (medications == null)
+                throw new DroneNotFoundException("Drone not found");
+
+            List<LoadedMedicationsResDto> list = new();
+            foreach (var item in medications)
+            {
+                list.Add(_mapper.Map<LoadedMedicationsResDto>(item));
+            }
+            return list;
         }
 
         public async Task<bool> LoadingMedication(IEnumerable<LoadMedicationReqDto> medications, int droneId)
@@ -65,7 +75,8 @@ namespace AppDrones.Core.Services
                     weightVerify += item.Weight;
                 }
 
-                if (weightVerify > drone!.WeightLimit) {
+                if (weightVerify > drone!.WeightLimit)
+                {
                     await ChangeDroneStatus(drone, State.IDLE);
                     throw new WeightLimitException($"The maximum allowed weight of the drone <{drone.SerialNumber.ToUpper()}> has been exceeded");
                 }

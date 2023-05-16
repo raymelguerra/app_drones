@@ -8,5 +8,9 @@ namespace AppDrones.Core.Dto
 {
     public class LoadedMedicationsResDto
     {
+        public string Name { get; set; } = null!;
+        public int Weight { get; set; }
+        public string Code { get; set; } = null!;
+        public string Image { get; set; } = null!;
     }
 }
