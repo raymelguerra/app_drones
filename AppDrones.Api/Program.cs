@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DatabaseContext>();
 builder.Services.AddTransient<IDrone, DroneService>();
 builder.Services.AddScoped<IValidator<RegistryReqDto>, RegistryDroneValidator>();
+builder.Services.AddScoped<IValidator<IEnumerable<LoadMedicationReqDto>>, LoadingMedicationValidator>();
 
 //Add cors support
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>

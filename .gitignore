@@ -5,3 +5,5 @@
 /.vs
 bin/
 obj/
+/drones.db-shm
+*.db-wal

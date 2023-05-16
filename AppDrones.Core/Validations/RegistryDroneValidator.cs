@@ -33,6 +33,11 @@ namespace AppDrones.Core.Validations
                     context.AddFailure("The weight limit must be less than 500 gr");
             });
             RuleFor(x => x.BatteryCapacity).NotNull().NotEmpty().WithMessage("This field is mandatory");
+            RuleFor(x => x.BatteryCapacity).Custom((value, context) =>
+            {
+                if (value > 100)
+                    context.AddFailure("Battery capacity must be less than 100%");
+            });
             RuleFor(x => x.State).NotNull().NotEmpty().WithMessage("This field is mandatory");
             RuleFor(x => x.State).Custom((value, context) =>
             {

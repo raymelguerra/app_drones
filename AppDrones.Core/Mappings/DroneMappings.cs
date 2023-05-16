@@ -26,9 +26,14 @@ namespace AppDrones.Core.Mappings
                  .ForMember(dr => dr.BatteryCapacity, y => y.MapFrom(t => t.BatteryCapacity))
                  .ForMember(dr => dr.Model, y => y.MapFrom(t => t.Model))
                  .ForMember(dr => dr.Id, y => y.MapFrom(t => t.DroneId));
+
+                map.CreateMap<LoadMedicationReqDto, Medication>()
+                 .ForMember(dr => dr.Name, y => y.MapFrom(t => t.Name))
+                 .ForMember(dr => dr.Code, y => y.MapFrom(t => t.Code))
+                 .ForMember(dr => dr.Image, y => y.MapFrom(t => t.Image))
+                 .ForMember(dr => dr.Weight, y => y.MapFrom(t => t.Weight));
             });
-            var mapper = new Mapper(config);
-            return mapper;
+            return new Mapper(config);
         }
     }
 }

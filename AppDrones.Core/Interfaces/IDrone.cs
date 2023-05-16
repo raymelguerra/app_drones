@@ -10,7 +10,7 @@ namespace AppDrones.Core.Interfaces
     public interface IDrone
     {
         public Task<RegistryResDto> Registry(RegistryReqDto drone);
-        public Task LoadingMedication(IEnumerable<LoadMedicationReqDto> medications);
+        public Task<bool> LoadingMedication(IEnumerable<LoadMedicationReqDto> medications, int droneId);
         public Task<IEnumerable<LoadedMedicationsResDto>> LoadedMedications(int droneId);
         public Task<IEnumerable<DroneAvailableDto>> CheckAvailability();
         public Task<DroneBatteryDto> BatteryLevel(int droneId);
