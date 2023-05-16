@@ -30,9 +30,11 @@ namespace AppDrones.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<DroneAvailableDto>> CheckAvailability()
+        public async Task<IEnumerable<DroneAvailableDto>> CheckAvailability()
         {
-            throw new NotImplementedException();
+            var drones = await _context.Drone.Where(x => x.State == State.IDLE && x.BatteryCapacity > 25).ToListAsync();
+
+            return _mapper.Map<List<DroneAvailableDto>>(drones);
         }
 
         public async Task<IEnumerable<LoadedMedicationsResDto>> LoadedMedications(int droneId)

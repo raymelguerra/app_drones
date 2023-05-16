@@ -65,7 +65,6 @@ namespace AppDrones.Api.Controllers
         /// </summary>
         /// <param name="medications">List of medication to load on the drone</param>
         /// <param name="droneId">Id of the drone</param>
-        /// <returns></returns>
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
@@ -107,7 +106,6 @@ namespace AppDrones.Api.Controllers
         /// Checking loaded medication items for a given drone.
         /// </summary>
         /// <param name="droneId">Id of the drone</param>
-        /// <returns></returns>
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
@@ -134,6 +132,22 @@ namespace AppDrones.Api.Controllers
                 }
                 else
                     return Problem();
+            }
+        }
+
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        [HttpGet("availables")]
+        public async Task<ActionResult> GetAvailablesDrones()
+        {
+            try
+            {
+                return Ok(await repo.CheckAvailability());
+            }
+            catch (Exception)
+            {
+                return Problem();
             }
         }
     }

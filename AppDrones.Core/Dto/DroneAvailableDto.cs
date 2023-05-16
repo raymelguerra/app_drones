@@ -11,9 +11,9 @@ namespace AppDrones.Core.Dto
     {
         public int Id { get; set; }
         public string SerialNumber { get; set; } = null!;
-        public Model Model { get; set; }
+        public string Model { get; set; } = null!;
         public double WeightLimit { get; set; }
         public int BatteryCapacity { get; set; }
-        public State State { get; set; }
+        public string State { get; set; } = null!;
     }
 }
