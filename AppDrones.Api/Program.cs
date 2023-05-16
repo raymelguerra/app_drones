@@ -1,9 +1,13 @@
+using AppDrones.Core.Data;
 using AppDrones.Core.Dto;
+using AppDrones.Core.Extensions;
 using AppDrones.Core.Interfaces;
+using AppDrones.Core.Models;
 using AppDrones.Core.Services;
 using AppDrones.Core.Validations;
 using AppDrones.Data;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +38,41 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Generate random data if database is empty
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<DatabaseContext>();
+
+    if (!dbContext.Drone.Any())
+    {
+        var drones = DataGenerator.GenerateDrones(10);
+
+        var random = new Random();
+
+        foreach (var drone in drones)
+        {
+            // Asignar medicamentos aleatorios
+            if (random.Next(2) == 0)
+            {
+                var medications = DataGenerator.GenerateMedications(random.Next(1, 6), drones);
+                drone.Medications = new List<Medication>();
+                drone.Medications = medications;
+            }
+
+            // Assign random state
+            // drone.State = random.NextEnum<State>();
+
+            // Assign random battery level
+            // drone.BatteryCapacity = random.Next(0, 100);
+
+            dbContext.Drone.Add(drone);
+        }
+        dbContext.SaveChanges();
+    }
+}
+
 
 app.UseHttpsRedirection();
 

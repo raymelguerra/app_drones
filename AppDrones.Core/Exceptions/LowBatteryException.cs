@@ -9,8 +9,9 @@ namespace AppDrones.Core.Exceptions
     public class LowBatteryException : Exception
     {
         public LowBatteryException(string message) : base(message)
-        {
-
-        }
+        {}
+        
+        public LowBatteryException() : base()
+        {}
     }
 }

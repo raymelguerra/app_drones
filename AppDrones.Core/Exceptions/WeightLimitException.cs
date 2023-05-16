@@ -12,5 +12,8 @@ namespace AppDrones.Core.Exceptions
         public WeightLimitException(string message): base(message)
         {
         }
+        public WeightLimitException(): base()
+        {
+        }
     }
 }

@@ -12,5 +12,10 @@ namespace AppDrones.Core.Exceptions
         {
 
         }
+        
+        public DroneStatusException() : base()
+        {
+
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace AppDrones.Api.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         [HttpPost("registry")]
-        public async Task<ActionResult<RegistryResDto>> PostRegistry(RegistryReqDto drone)
+        public async Task<ActionResult> PostRegistry(RegistryReqDto drone)
         {
             try
             {

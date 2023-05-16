@@ -27,7 +27,7 @@ namespace AppDrones.Test
             controller = new DispatchController(mockDrone.Object, mockRegistryValidator.Object, mockLoadMedicationValidator.Object);
         }
 
-        [Test]
+        [Test()]
         public async Task PostRegistry_ValidInput_ReturnsCreated()
         {
             // Arrange
@@ -113,6 +113,19 @@ namespace AppDrones.Test
 
             // Act
             var result = await controller.GetMedicationsByDrone(1);
+
+            // Assert
+            Assert.IsInstanceOf<OkObjectResult>(result);
+        }
+
+        [Test]
+        public async Task GetAvailablesDrones_ValidInput_ReturnsOk()
+        {
+            // Arrange
+            mockDrone.Setup(d => d.CheckAvailability()).ReturnsAsync(new List<DroneAvailableDto>());
+
+            // Act
+            var result = await controller.GetAvailablesDrones();
 
             // Assert
             Assert.IsInstanceOf<OkObjectResult>(result);

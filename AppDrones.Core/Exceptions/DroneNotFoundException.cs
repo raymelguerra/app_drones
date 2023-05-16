@@ -12,5 +12,8 @@ namespace AppDrones.Core.Exceptions
         public DroneNotFoundException(string message) : base(message)
         {
         }
+        public DroneNotFoundException() : base()
+        {
+        }
     }
 }
