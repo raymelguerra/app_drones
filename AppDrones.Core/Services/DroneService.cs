@@ -6,7 +6,9 @@ using AppDrones.Core.Mappings;
 using AppDrones.Core.Models;
 using AppDrones.Data;
 using AutoMapper;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
 
 namespace AppDrones.Core.Services
 {

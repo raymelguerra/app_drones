@@ -21,6 +21,13 @@ namespace AppDrones.Data
             DbPath = System.IO.Path.Join(folder, "drones.db");
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Drone>()
+                .HasIndex(u => u.SerialNumber)
+                .IsUnique();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
 

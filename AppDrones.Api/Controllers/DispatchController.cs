@@ -54,9 +54,17 @@ namespace AppDrones.Api.Controllers
                     return BadRequest(vl);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return Problem();
+                if (e.InnerException!.Message.Contains("SQLite Error 19"))
+                {
+
+                    this.ModelState.TryAddModelError("SQLError", e.InnerException!.Message);
+                    var vl = new ValidationProblemDetails(this.ModelState);
+                    return BadRequest(vl);
+                }
+                else
+                    return Problem();
             }
         }
 
