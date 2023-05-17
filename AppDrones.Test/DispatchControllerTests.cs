@@ -106,19 +106,6 @@ namespace AppDrones.Test
         }
 
         [Test]
-        public async Task GetMedicationsByDrone_ValidInput_ReturnsOk()
-        {
-            // Arrange
-            mockDrone.Setup(d => d.LoadedMedications(1)).ReturnsAsync(new List<LoadedMedicationsResDto>());
-
-            // Act
-            var result = await controller.GetMedicationsByDrone(1);
-
-            // Assert
-            Assert.IsInstanceOf<OkObjectResult>(result);
-        }
-
-        [Test]
         public async Task GetAvailablesDrones_ValidInput_ReturnsOk()
         {
             // Arrange
@@ -142,6 +129,19 @@ namespace AppDrones.Test
 
             // Assert
             Assert.IsInstanceOf<BadRequestObjectResult>(result);
+        }
+
+        [Test]
+        public async Task BatteryLevelByDrone_ValidInput_ReturnsOk()
+        {
+            // Arrange
+            mockDrone.Setup(d => d.BatteryLevel(1)).ReturnsAsync(new DroneBatteryDto());
+
+            // Act
+            var result = await controller.BatteryLevelByDrone(1);
+
+            // Assert
+            Assert.IsInstanceOf<OkObjectResult>(result);
         }
     }
 }

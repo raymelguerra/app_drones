@@ -7,3 +7,4 @@ bin/
 obj/
 /drones.db-shm
 *.db-wal
+/history.txt
