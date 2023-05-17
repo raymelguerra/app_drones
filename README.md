@@ -278,11 +278,6 @@ Date:   Fri May 12 21:59:35 2023 -0400
 
     Initial commit
 
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more information.
-
 ## Author
 
 This project was developed by **Raymel Ramos Guerra**, a software developer with over 6 years of experience.
